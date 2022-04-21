@@ -33,9 +33,12 @@ TokenProcessor.prototype.process = function(provider, block) {
             obj.to_address = provider.logDataToAddress(ev.data, dataRead++);
           }
           if (ev.topics.length > 3) {
-            obj.value = provider.w3.utils.hexToNumberString(provider.logTopicToAddress(ev.topics[3]));
+            console.log(`topic_log ${ev.topics[3]}`)
+            //provider.w3.utils.hexToNumberString()
+            obj.value = provider.logTopicToAddress(ev.topics[3]);
           } else {
-            obj.value = provider.w3.utils.hexToNumberString(provider.logDataToAddress(ev.data, dataRead++));
+            //provider.w3.utils.hexToNumberString()
+            obj.value = provider.logDataToAddress(ev.data, dataRead++);
           }
           this.writer.insert(this.type, obj);
         }

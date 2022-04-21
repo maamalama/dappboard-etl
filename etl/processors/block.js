@@ -7,6 +7,7 @@ function BlockProcessor(writer) {
 }
 
 BlockProcessor.prototype.process = function(provider, block) {
+  console.log(block)
   var obj = {
     difficulty: block.difficulty,
     extra_data: provider.normalizeHash(block.extraData),

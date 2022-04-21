@@ -1,5 +1,6 @@
 var Ethereum = require('./ethereum');
 var Writer = require('./writers/psql');
+var config = require('./config');
 
 var processors_to_load = [
   'block',
@@ -11,19 +12,19 @@ var processors_to_load = [
 var processors = [];
 
 writer = new Writer({
-  user: process.env.DAPPBOARD_PSQL_USER,
-  host: process.env.DAPPBOARD_PSQL_HOST,
-  database: process.env.DAPPBOARD_PSQL_DB,
-  password: process.env.DAPPBOARD_PSQL_PASSWORD,
-  port: 25061,
-  ssl: true,
+   user: config.DAPPBOARD_PSQL_USER,
+ host: config.DAPPBOARD_PSQL_HOST,
+  database: config.DAPPBOARD_PSQL_DB,
+  password:  config.DAPPBOARD_PSQL_PASSWORD,
+  port: 5432,
+  
 });
 
 var runs = 0;
 
-//console.log(process.env.DAPPBOARD_NODE_URL)
-var eth = new Ethereum.Provider(Ethereum.ProviderType.WS, process.env.DAPPBOARD_NODE_URL);
-
+//console.log('https://mainnet.infura.io/v3/05d87185155f4ab2a5ec4779b95cbc46')
+var eth = new Ethereum.Provider(Ethereum.ProviderType.WS, config.DAPPBOARD_NODE_URL);
+console.log(process.env.DAPPBOARD_ETHERSCAN_API)
 
 var liveRun = async function() {
   var liveBlock = await eth.getLatestBlock() - 10;
@@ -67,4 +68,4 @@ var doBlock = async function(blocknumber, cb) {
   });
 }
 
-liveRun()
+liveRun();

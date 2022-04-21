@@ -1,17 +1,18 @@
 var Ethereum = require('./ethereum');
 var Writer = require('./writers/psql');
 var TokenScrapper = require('./utils/token_scraper');
+var config = require('./config');
 
 writer = new Writer({
-  user: process.env.DAPPBOARD_PSQL_USER,
-  host: process.env.DAPPBOARD_PSQL_HOST,
-  database: process.env.DAPPBOARD_PSQL_DB,
-  password: process.env.DAPPBOARD_PSQL_PASSWORD,
-  port: 25061,
-  ssl: true,
+   user: config.DAPPBOARD_PSQL_USER,
+ host: config.DAPPBOARD_PSQL_HOST,
+  database: config.DAPPBOARD_PSQL_DB,
+  password:  config.DAPPBOARD_PSQL_PASSWORD,
+  port: 5432,
+  
 });
 
-var eth = new Ethereum.Provider(Ethereum.ProviderType.WS, process.env.DAPPBOARD_NODE_URL);
+var eth = new Ethereum.Provider(Ethereum.ProviderType.WS, config.DAPPBOARD_NODE_URL);
 var scraper = new TokenScrapper(eth, writer);
 
 var scrapMissingTokens = async function(eth, writer) {

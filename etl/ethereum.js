@@ -20,7 +20,7 @@ function Provider(providerType, providerAddress) {
     transactionsReceipts: 0,
   };
   if (this.providerType == enum_providerType.WS) {
-    this.w3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/d70ece33c9754843b5181a4c07f49a4f'));
+    this.w3 = new Web3(new Web3.providers.HttpProvider('https://mainnet.infura.io/v3/05d87185155f4ab2a5ec4779b95cbc46'));
   //  this.w3 = new Web3(new Web3.providers.WebsocketProvider('wss://mainnet.infura.io/ws/d70ece33c9754843b5181a4c07f49a4f/'));
   } else {
     // TODO check other provider types

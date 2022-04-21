@@ -1,4 +1,4 @@
-SELECT * FROM dapp_bounties_network AS
+CREATE VIEW dapp_bounties_network AS
 SELECT
 transaction_hash,
 timestamp,
